@@ -1,15 +1,30 @@
-<div>
-    <h2> <%= @list.name %> </h2>
-    <ul>
-      <%= @movies.each do |movie| %>
-        <li> <%= movie.title %> </li>
-        <li> <%= movie.overview %> </li>
-        <li> <%= movie.poster_url %> </li>
-        <li> <%= movie.rating %> </li>
-    <% end %>
-    </ul>
-        <h3><i class="fa-regular fa-bookmark"></i><%= link_to "Add a Bookmark", new_list_bookmark_path(@list.bookmarks) %> </h3>
-
+  <div class="container">
+    <div>
         <h3><%= link_to "All lists", lists_path  %></h3>
 
-</div>
+
+    <h4>Your movies</h4>
+    <div class="card-product">
+      <div class="card-product-infos">
+        <ul>
+          <% @movies.each do |movie| %>
+            <li> <%= movie.title %> </li>
+            <li> <%= movie.overview %> </li>
+            <li> <%= movie.rating %> </li>
+            <img src="<%= movie.poster_url %>" alt="img here" width=200>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+        <% if @list.photo.attached? %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.photo.key, height: 300, crop: :fill %>')">
+        <% else %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+        <% end %>
+          <h2> <%= @list.name %> </h2>
+    </div>
+
+
+        <h3><i class="fa-regular fa-bookmark"></i><%= link_to "Add a Bookmark", new_list_bookmark_path(@list) %> </h3>
+  </div>

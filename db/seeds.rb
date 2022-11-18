@@ -33,3 +33,10 @@ movies['results'].each do |movie|
     rating: movie['vote_average']
   )
 end
+
+
+# puts 'Seeding images...'
+# file = URI.open("https://source.unsplash.com/random")
+# list = List.new(name: "NES", body: "A great console")
+# list.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+# list.save
